@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import useFetch from "../../../hook/useFetch";
@@ -32,7 +31,7 @@ export default function NearbyJobs() {
             <CardsNearbyJob
               job={job}
               key={`nearby_job_${job.job_id}`}
-              handleNavigate={() => router.push(`/job-detail/${job.job_id}`)}
+              handleNavigate={() => router.push(`/job-details/${job.job_id}`)}
             />
           ))
         )}

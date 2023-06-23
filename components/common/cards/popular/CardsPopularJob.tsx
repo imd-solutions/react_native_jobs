@@ -1,6 +1,4 @@
-import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-
 import styles from "./cardspopularjob.style";
 import { COLORS, images } from "../../../../constants";
 import { imageCheck } from "../../../../utils/imageCheck";

@@ -11,10 +11,11 @@
     {
       "job_id": 1,
       "title": "Senior Software Engineer - Java Security",
+      "description": "This is the description",
       "url": "https://jobs.lever.co/inductiveautomation/684bc03d-de16-45e8-a41a-7a8023080935/apply?lever-origin=applied&lever-source%5B%5D=BuiltInNationwide",
       "company": "Inductive Automation",
       "company_logo": "https://inductiveautomation.com/static/images/logos/inductive-automation-logo.b565238b0b65.png",
-      "location": null,
+      "location": "Texas, USA",
       "postDate": "01/01/0001 00:00:00",
       "salary": "£280,000",
       "jobSource": "BuiltIn",
@@ -23,6 +24,10 @@
       "dateAdded": "2023-06-13T01:23:26.624094+00:00",
       "keyPhrases": [],
       "tags": [],
+      "job_highlights": {
+        "qualifications": [1, 2, 3],
+        "responsibilities": [1, 2, 3]
+      },
       "job_type_id": 1,
       "featured": false,
       "popular": true,

@@ -1,12 +1,26 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React from "react";
+import { View, Text } from "react-native";
 
-import styles from './specifics.style';
+import styles from "./specifics.style";
 
-export default function Specifics() {
+interface iSpecifics {
+  title: string;
+  points: [];
+}
+
+export default function Specifics({ title, points }: iSpecifics) {
   return (
-    <View>
-      <Text>Specific Page</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}:</Text>
+
+      <View style={styles.pointsContainer}>
+        {points.map((item, i) => (
+          <View style={styles.pointWrapper} key={i}>
+            <View style={styles.pointDot}></View>
+            <Text style={styles.pointText}>{item}</Text>
+          </View>
+        ))}
+      </View>
     </View>
-  )
+  );
 }

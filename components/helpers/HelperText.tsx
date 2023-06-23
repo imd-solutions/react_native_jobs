@@ -1,4 +1,3 @@
-import React from "react";
 import { Text, ActivityIndicator, View } from "react-native";
 import useFetch from "../../hook/useFetch";
 import { COLORS } from "../../constants";
