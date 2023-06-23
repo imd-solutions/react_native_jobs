@@ -11,11 +11,12 @@ import styles from "./popularjobs.style";
 import { COLORS, SIZES } from "../../../constants";
 import CardsPopularJob from "../../common/cards/popular/CardsPopularJob";
 import useFetch from "./../../../hook/useFetch";
+import HelperErrorText from "../../helpers/HelperErrorText";
 
 export default function () {
   const router = useRouter();
 
-  const { data, isLoading, error } = useFetch("jobs", {});
+  const { data, isLoading, error } = useFetch("jobs", { popular: true });
 
   const [selectedJob, setSelectedJob] = useState();
 
@@ -36,7 +37,7 @@ export default function () {
         {isLoading ? (
           <ActivityIndicator size="large" color={COLORS.primary} />
         ) : error ? (
-          <Text></Text>
+          <HelperErrorText />
         ) : (
           <FlatList
             data={data}

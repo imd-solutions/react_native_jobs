@@ -10,9 +10,19 @@ const useFetch = (url: string, query: any | null) => {
     setIsLoading(true);
 
     try {
-      const response = await API.get(url);
-      setData(response.data);
-      setIsLoading(false);
+      if (!query) {
+        const response = await API.get(`${url}`);
+        setData(response.data);
+        setIsLoading(false);
+      } else {
+        let key = Object.keys(query)[0];
+        let value = Object.values(query)[0];
+
+        const response = await API.get(`${url}?${key}=${value}`);
+
+        setData(response.data);
+        setIsLoading(false);
+      }
     } catch (err) {
       setError(err);
     } finally {

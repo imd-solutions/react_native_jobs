@@ -17,7 +17,7 @@ export default function CardTypesJob() {
 
   const [activeJobType, setactiveJobType] = useState("full-time");
 
-  const { data, isLoading, error } = useFetch("job_types", {});
+  const { data, isLoading, error } = useFetch("job_types", null);
 
   return (
     <View>

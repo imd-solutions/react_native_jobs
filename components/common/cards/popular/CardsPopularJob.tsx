@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 
 import styles from "./cardspopularjob.style";
 import { COLORS, images } from "../../../../constants";
+import { imageCheck } from "../../../../utils/imageCheck";
 interface iCardsPopularJob {
   item: any;
   selectedJob: any;
@@ -34,7 +35,7 @@ export default function CardsPopularJob({
           },
         ]}
       >
-        {item.company_logo ? (
+        {imageCheck(item.company_logo) ? (
           <Image
             source={{ uri: item.company_logo }}
             resizeMode="contain"
