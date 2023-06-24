@@ -7,7 +7,7 @@ import { NearbyJobs, PopularJobs, HeaderBtn, Welcome } from "../components";
 
 export default function App() {
   const router = useRouter();
-
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <Stack.Screen
@@ -34,7 +34,15 @@ export default function App() {
             padding: SIZES.medium,
           }}
         >
-          <Welcome />
+          <Welcome
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            handleClick={() => {
+              if (searchTerm) {
+                router.push(`/search/${searchTerm}`);
+              }
+            }}
+          />
           <PopularJobs />
           <NearbyJobs />
         </View>

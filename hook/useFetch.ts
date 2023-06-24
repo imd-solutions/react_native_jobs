@@ -3,6 +3,7 @@ import API from "./../utils/api";
 
 const useFetch = (url: string, query: any | null) => {
   const [data, setData] = useState<any>([]);
+  const [count, setCount] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<any | null>(null);
 
@@ -15,12 +16,14 @@ const useFetch = (url: string, query: any | null) => {
         setData(response.data);
         setIsLoading(false);
       } else {
-        let key = Object.keys(query)[0];
-        let value = Object.values(query)[0];
-
-        const response = await API.get(`${url}?${key}=${value}`);
+        const response = await API.get(`${url}`, {
+          params: {
+            ...query,
+          },
+        });
 
         setData(response.data);
+        setCount(response.headers["x-total-count"]);
         setIsLoading(false);
       }
     } catch (err) {
@@ -39,7 +42,7 @@ const useFetch = (url: string, query: any | null) => {
     fetchData();
   };
 
-  return { data, isLoading, error, refetch };
+  return { data, count, isLoading, error, refetch };
 };
 
 export default useFetch;

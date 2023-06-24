@@ -35,7 +35,7 @@ export default function CardTypesJob() {
             <TouchableOpacity
               onPress={() => {
                 setactiveJobType(item.slug);
-                router.push(`/search/${item}`);
+                router.push(`/search/${item.title}`);
               }}
               style={[
                 styles.tab,

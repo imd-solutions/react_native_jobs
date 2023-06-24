@@ -14,7 +14,17 @@ import styles from "./welcome.style";
 import useFetch from "../../../hook/useFetch";
 import CardTypesJob from "../../common/cards/types/CardTypesJob";
 
-export default function Welcome() {
+interface iWelcome {
+  searchTerm: string;
+  setSearchTerm: any;
+  handleClick: any;
+}
+
+export default function Welcome({
+  searchTerm,
+  setSearchTerm,
+  handleClick,
+}: iWelcome) {
   const router = useRouter();
   return (
     <View>
@@ -26,15 +36,12 @@ export default function Welcome() {
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
-            value=""
-            onChange={() => console.log("CLICKED")}
+            value={searchTerm}
+            onChangeText={(text) => setSearchTerm(text)}
             placeholder="What are you looking for?"
           />
         </View>
-        <TouchableOpacity
-          style={styles.searchBtn}
-          onPress={() => console.log("BTN CLICKED")}
-        >
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             source={icons.search}
             resizeMode="contain"
