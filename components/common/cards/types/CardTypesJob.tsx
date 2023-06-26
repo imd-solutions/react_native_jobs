@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   View,
 } from "react-native";
-import { COLORS, icons, SIZES } from "../../../../constants";
+import { COLORS, SIZES } from "../../../../constants";
 import { useRouter } from "expo-router";
 
 import styles from "./cardtypejobs.style";
@@ -35,7 +35,9 @@ export default function CardTypesJob() {
             <TouchableOpacity
               onPress={() => {
                 setactiveJobType(item.slug);
-                router.push(`/search/${item.title}`);
+                router.push(
+                  `/search/${item.title}?mainSearch=job_type_id&mainQuery=${item.job_type_id}`
+                );
               }}
               style={[
                 styles.tab,

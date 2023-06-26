@@ -23,7 +23,8 @@ export default function Search() {
   const [disableNextBtn, setDisableNextBtn] = useState(false);
 
   const { data, count, isLoading, error, refetch } = useFetch("jobs", {
-    q: params.id,
+    [`${params.mainSearch}`]: params.mainQuery,
+    q: params.mainSearch ? "" : params.id,
     _page: page,
     _limit: limit,
   });
@@ -43,9 +44,14 @@ export default function Search() {
       setDisablePrevBtn(true);
     }
     let pageCount = Math.ceil(count / limit);
+
     if (pageCount === page) {
       setDisableNextBtn(true);
     }
+
+    // if (data && pageCount < limit) {
+    //   setDisableNextBtn(true);
+    // }
     refetch();
   }, [page]);
 
@@ -91,49 +97,53 @@ export default function Search() {
             </View>
           </>
         )}
-        ListFooterComponent={(item) => (
-          <View style={styles.footerContainer}>
-            <TouchableOpacity
-              disabled={disablePrevBtn}
-              style={[
-                styles.paginationButton,
-                {
-                  backgroundColor: disablePrevBtn
-                    ? COLORS.disabledTertiary
-                    : COLORS.tertiary,
-                },
-              ]}
-              onPress={() => handlePagination("prev")}
-            >
-              <Image
-                source={icons.chevronLeft}
-                style={styles.paginationImage}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-            <View style={styles.paginationTextBox}>
-              <Text style={styles.paginationText}>{page}</Text>
+        ListFooterComponent={() =>
+          count > limit ? (
+            <View style={styles.footerContainer}>
+              <TouchableOpacity
+                disabled={disablePrevBtn}
+                style={[
+                  styles.paginationButton,
+                  {
+                    backgroundColor: disablePrevBtn
+                      ? COLORS.disabledTertiary
+                      : COLORS.tertiary,
+                  },
+                ]}
+                onPress={() => handlePagination("prev")}
+              >
+                <Image
+                  source={icons.chevronLeft}
+                  style={styles.paginationImage}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+              <View style={styles.paginationTextBox}>
+                <Text style={styles.paginationText}>{page}</Text>
+              </View>
+              <TouchableOpacity
+                disabled={disableNextBtn}
+                style={[
+                  styles.paginationButton,
+                  {
+                    backgroundColor: disableNextBtn
+                      ? COLORS.disabledTertiary
+                      : COLORS.tertiary,
+                  },
+                ]}
+                onPress={() => handlePagination("next")}
+              >
+                <Image
+                  source={icons.chevronRight}
+                  style={styles.paginationImage}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              disabled={disableNextBtn}
-              style={[
-                styles.paginationButton,
-                {
-                  backgroundColor: disableNextBtn
-                    ? COLORS.disabledTertiary
-                    : COLORS.tertiary,
-                },
-              ]}
-              onPress={() => handlePagination("next")}
-            >
-              <Image
-                source={icons.chevronRight}
-                style={styles.paginationImage}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          </View>
-        )}
+          ) : (
+            <View></View>
+          )
+        }
       />
     </SafeAreaView>
   );

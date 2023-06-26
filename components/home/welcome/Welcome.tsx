@@ -1,17 +1,8 @@
-import React, { useState } from "react";
 import { useRouter } from "expo-router";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  FlatList,
-} from "react-native";
-import { COLORS, icons, SIZES } from "../../../constants";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import { icons } from "../../../constants";
 
 import styles from "./welcome.style";
-import useFetch from "../../../hook/useFetch";
 import CardTypesJob from "../../common/cards/types/CardTypesJob";
 
 interface iWelcome {
